@@ -47,8 +47,32 @@ public static class WritingToXMLStreams {
         // define a file path to write to
         string xmlFile = System.IO.Path.GetFullPath(System.IO.Path.Combine(System.Environment.CurrentDirectory, @"..\..\..\Documentation\streams.xml"));
 
+        // declare variables for the filestream and XML writer
+        FileStream? xmlFileStream = null;
+        System.Xml.XmlWriter? xml = null;
+
+        try {
+            // Create a file stream
+            xmlFileStream = File.Create(xmlFile);
+
+            // wrap the file stream in an XML writer helper
+            // and automaticallly indent nested elements
+            xml = System.Xml.XmlWriter.Create(xmlFileStream, new System.Xml.XmlWriterSettings {Indent = true});
+
+            // write the XML declaration
+            xml.WriteStartDocument();
+
+            // write a root element
+            xml.WriteStartElement("callsigns");
+
+            // enumerate the strings, writing each one to the stream
+            foreach (string item in Viper.Callsigns) {
+                xml.WriteElementString("callsign", item);
+            }
+        }
+
         // testing
-        System.Console.Write(xmlFile);
+        //System.Console.Write(xmlFile);
     }
 
     static void SectionTitle(string title)
