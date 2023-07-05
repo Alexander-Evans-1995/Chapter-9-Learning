@@ -39,3 +39,25 @@ public static class WritingToTextStream {
         ForegroundColor = previousColor;
     }
 }
+
+public static class WritingToXMLStreams {
+    public static void Run() {
+        SectionTitle("Writing to XML streams");
+
+        // define a file path to write to
+        string xmlFile = System.IO.Path.GetFullPath(System.IO.Path.Combine(System.Environment.CurrentDirectory, @"..\..\..\Documentation\streams.xml"));
+
+        // testing
+        System.Console.Write(xmlFile);
+    }
+
+    static void SectionTitle(string title)
+    {
+        ConsoleColor previousColor = ForegroundColor;
+        ForegroundColor = ConsoleColor.Yellow;
+        WriteLine("*");
+        WriteLine($"* {title}");
+        WriteLine("*");
+        ForegroundColor = previousColor;
+    }
+}
