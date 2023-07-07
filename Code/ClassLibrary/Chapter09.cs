@@ -39,3 +39,51 @@ public static class WritingToTextStream {
         ForegroundColor = previousColor;
     }
 }
+
+public static class WritingToXMLStreams {
+    public static void Run() {
+        SectionTitle("Writing to XML streams");
+
+        // define a file path to write to
+        string xmlFile = System.IO.Path.GetFullPath(System.IO.Path.Combine(System.Environment.CurrentDirectory, @"..\..\Documentation\streams.xml"));
+
+        // declare variables for the filestream and XML writer
+        // refractored for using statement rather than calling dispose()
+        using FileStream? xmlFileStream = File.OpenWrite(xmlFile);
+        using (System.Xml.XmlWriter? xml = System.Xml.XmlWriter.Create(xmlFileStream, new System.Xml.XmlWriterSettings {Indent = true})){
+            // write the XML declaration
+            xml.WriteStartDocument();
+
+            // write a root element
+            xml.WriteStartElement("callsigns");
+
+            // enumerate the strings, writing each one to the stream
+            foreach (string item in Viper.Callsigns) {
+                xml.WriteElementString("callsign", item);
+            }
+
+            // write the close root element
+            xml.WriteEndElement();
+            
+            // closer helper and stream
+            xml.Close();
+            xmlFileStream.Close();
+        }
+
+        // output all the contents to the file.
+        WriteLine("{0} contains {1:N0} bytes", arg0: xmlFile, arg1: new FileInfo(xmlFile).Length);
+        WriteLine(File.ReadAllText(xmlFile));
+        // testing
+        //System.Console.Write(xmlFile);
+    }
+
+    static void SectionTitle(string title)
+    {
+        ConsoleColor previousColor = ForegroundColor;
+        ForegroundColor = ConsoleColor.Yellow;
+        WriteLine("*");
+        WriteLine($"* {title}");
+        WriteLine("*");
+        ForegroundColor = previousColor;
+    }
+}
