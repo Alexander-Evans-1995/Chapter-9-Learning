@@ -12,17 +12,12 @@ public partial class Program {
         //WritingToTextStreamPractice.Dispose();
         //WritingToXMLStreams.Run();
         //XMLPractice.Run();
+        //CompressProgram.Compress(algorithim: "gzip");
+        //CompressProgram.Compress(algorithim: "brotli");
+        //CompressionPractice.CompressionPing();
+        CompressionPractice.Compress();
     }
 }
 
-public partial class Program {
-    public static void SectionTitle(string title)
-    {
-        ConsoleColor previousColor = ForegroundColor;
-        ForegroundColor = ConsoleColor.Yellow;
-        WriteLine("*");
-        WriteLine($"* {title}");
-        WriteLine("*");
-        ForegroundColor = previousColor;
-    }
-}
+
+

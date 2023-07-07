@@ -8,6 +8,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary\Chapter09.csproj" />
+    <!--<Compile Include="Program.cs" /><Compile Include="Program.Compress.cs"><DependentUpon>Program.cs</DependentUpon></Compile>-->
   </ItemGroup>
 
 </Project>
