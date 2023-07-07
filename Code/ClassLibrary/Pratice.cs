@@ -49,3 +49,50 @@ public class WritingToTextStreamPractice {
         System.IO.Directory.Delete(textFile, recursive: true);
     }
 }
+
+public static class XMLPractice {
+    public static void Run() {
+        // Array
+        string[] listArray = new string[3] {"Mister", "Missus", "Miss"};
+
+        // path
+        string xmlFile = System.IO.Path.GetFullPath(System.IO.Path.Combine(System.Environment.CurrentDirectory, @"..\..\Documentation\pratice streams.xml"));
+
+        // XML objects
+        FileStream? xmlFileStream = null;
+        System.Xml.XmlWriter? xml = null;
+
+        // try - catch - finally block for XML writing and closing
+        try {
+            xmlFileStream = File.Create(xmlFile);
+
+            xml = System.Xml.XmlWriter.Create(xmlFileStream, new System.Xml.XmlWriterSettings { Indent=true});
+
+            xml.WriteStartDocument();
+            xml.WriteStartElement("List");
+            // enumeration
+            for (int i = 0; i < 3; i++) {
+                xml.WriteElementString("li", listArray[i]);
+            }
+
+            xml.WriteEndElement();
+            xml.Close();
+            xmlFileStream.Close();
+        }
+        catch (Exception ex) {
+            System.Console.WriteLine($"{ex.GetType()} says {ex.Message}");
+        }
+        finally {
+            if (xml != null) {
+                xml.Dispose();
+            }
+
+            if (xmlFileStream != null) {
+                xmlFileStream.Dispose();
+            }
+        }
+
+        // Testing
+        //System.Console.Write(xmlFile);
+    }
+}

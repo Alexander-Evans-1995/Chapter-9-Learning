@@ -10,7 +10,8 @@ public partial class Program {
         //PrintTest.Ping();
         //WritingToTextStreamPractice.Run();
         //WritingToTextStreamPractice.Dispose();
-        WritingToXMLStreams.Run();
+        //WritingToXMLStreams.Run();
+        //XMLPractice.Run();
     }
 }
 
