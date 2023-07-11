@@ -15,7 +15,9 @@ public partial class Program {
         //CompressProgram.Compress(algorithim: "gzip");
         //CompressProgram.Compress(algorithim: "brotli");
         //CompressionPractice.CompressionPing();
-        CompressionPractice.Compress();
+        //CompressionPractice.Compress();
+        TarFileWrapper.TarFileRun();
+        //TarPracticeWrapper.Run();
     }
 }
 
