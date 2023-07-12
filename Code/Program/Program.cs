@@ -15,6 +15,7 @@ public partial class Program {
         //TarPracticeWrapper.Run();
         //EncodingWrapper.Run();
         SerializationWrapper.Run();
+        //SerializationWrapper.Print();
     }
 }
 
