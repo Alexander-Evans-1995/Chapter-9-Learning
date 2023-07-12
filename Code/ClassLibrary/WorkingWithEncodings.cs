@@ -21,7 +21,7 @@ public static class EncodingWrapper {
 
         Encoding encoder = number switch {
             ConsoleKey.D1 or ConsoleKey.NumPad1 => Encoding.ASCII,
-            ConsoleKey.D2 or ConsoleKey.NumPad2 => Encoding.UTF7,
+            //ConsoleKey.D2 or ConsoleKey.NumPad2 => Encoding.UTF7,
             ConsoleKey.D3 or ConsoleKey.NumPad3 => Encoding.UTF8,
             ConsoleKey.D4 or ConsoleKey.NumPad4 => Encoding.Unicode,
             ConsoleKey.D5 or ConsoleKey.NumPad5 => Encoding.UTF32,
@@ -35,7 +35,23 @@ public static class EncodingWrapper {
         WriteLine($"Text to encode: {message} Characters: {message.Length}");
         // encode the string into a byte array
         byte[] encoded = encoder.GetBytes(message);
+
+        // check how many bytes the encoding needed
+        WriteLine("{0} used {1:N0} bytes.", encoder.GetType().Name, encoded.Length);
+        WriteLine();
+
+        // enumberate each byte
+        WriteLine($"BYTE | HEX | CHAR");
+
+        foreach (byte b in encoded) {
+            WriteLine($"{b,4} | {b.ToString("X"),3} | {(char)b,4}");
+        }
+
+        // decode the byte array back into a string and display it
+        string decoded = encoder.GetString(encoded);
+        WriteLine(decoded);
+
         // Testing
-        System.Console.Write("Success");
+        //System.Console.Write("Success");
     }
 }

@@ -13,7 +13,8 @@ public partial class Program {
         //CompressionPractice.Compress();
         //TarFileWrapper.TarFileRun();
         //TarPracticeWrapper.Run();
-        EncodingWrapper.Run();
+        //EncodingWrapper.Run();
+        SerializationWrapper.Run();
     }
 }
 
