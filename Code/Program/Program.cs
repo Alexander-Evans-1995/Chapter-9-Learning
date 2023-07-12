@@ -1,9 +1,4 @@
 ﻿namespace Chapter09;
-using static System.Console;
-using System.Xml;
-using static System.Environment;
-using static System.IO.Path;
-using static System.IO.Directory;
 
 public partial class Program {
     public static void Main(string[] args) {
@@ -16,8 +11,9 @@ public partial class Program {
         //CompressProgram.Compress(algorithim: "brotli");
         //CompressionPractice.CompressionPing();
         //CompressionPractice.Compress();
-        TarFileWrapper.TarFileRun();
+        //TarFileWrapper.TarFileRun();
         //TarPracticeWrapper.Run();
+        EncodingWrapper.Run();
     }
 }
 
