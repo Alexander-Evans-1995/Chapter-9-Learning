@@ -56,6 +56,19 @@ public class SerializationWrapper {
 
         // Display the serialized object graph
         WriteLine(File.ReadAllText(path));
+
+        WriteLine();
+        WriteLine("* Deserializing XML files");
+        using (FileStream xmlLoad = File.Open(path, FileMode.Open)) {
+            // deserialize and cast the object graph into a List of Persons
+            List<Person>? loadedPeople = xs.Deserialize(xmlLoad) as List<Person>;
+
+            if (loadedPeople is not null) {
+                foreach (Person p in loadedPeople) {
+                    WriteLine("{0} has {1} children.", p.LastName, p.Children?.Count ?? 0);
+                }
+            }
+        }
         
         // Testing
         System.Console.WriteLine("Path: " + path);
@@ -66,5 +79,11 @@ public class SerializationWrapper {
 
         // Testing
         System.Console.WriteLine("Path: " + path);
+    }
+
+    public static void Deserialize() {
+        string path = GetFullPath(Combine(CurrentDirectory, @"..\..\Documentation\people.xml"));
+
+
     }
 }
